@@ -15,12 +15,7 @@
       </q-avatar>
     </q-knob>
 
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 140px"
-    />
-
+    {{ { x, y, isScrolling, arrivedState, directions } }}
     <div class="q-mt-xl">
       <q-btn
         color="primary"
@@ -46,7 +41,7 @@
     <div class="q-mt-md" style="width: 200px">
       <q-slider v-model="count" :min="min" :max="max" />
     </div>
-    <div class="hor-scroll q-gutter-sm full-width">
+    <div class="hor-scroll q-gutter-sm full-width" ref="el">
       <q-btn
         v-for="(b, i) in names"
         :key="i"
@@ -59,9 +54,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onBeforeUpdate } from 'vue';
+import { useScroll } from '@vueuse/core';
 
 const count = ref(0);
+const el = ref(null);
+
+onBeforeUpdate(() => {
+  el.value = null;
+});
+
+const { x, y, isScrolling, arrivedState, directions } = useScroll(el);
+
 let names = ref([
   'paul',
   'James',
