@@ -60,7 +60,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useScroll } from '@vueuse/core'
 
 const count = ref(0);
 let names = ref([
