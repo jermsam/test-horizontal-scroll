@@ -259,6 +259,7 @@ const max = 5;
   overflow: auto;
   white-space: nowrap;
   background: #d7d7d7d7;
+  scroll-snap-align: center;
   .q-btn {
     display: inline-block;
   }
